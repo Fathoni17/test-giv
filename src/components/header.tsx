@@ -9,7 +9,6 @@ import issue from '../assets/svg/icons/ticket.svg';
 import message from '../assets/svg/icons/chatbubbles.svg';
 import balance from '../assets/svg/icons/coins.svg';
 import profile from '../assets/svg/icons/user.svg';
-import { width } from "@material-ui/system";
 
 interface HeaderMenuItemParams {
     id: String,

@@ -1,13 +1,13 @@
 import React from 'react';
-import { HeaderContainer } from '../components'
+import { HeaderContainer, MenuBar } from '../components'
 
 export const PageEditor = () => {
     return (
         <>
             <HeaderContainer />
-            <div>
-                {/* <MenuBar /> */}
-                <div>
+            <div className='page-wrapper'>
+                <MenuBar />
+                <div className='page-container'>
                     {/* <NavIndicator /> */}
                     <div className='main-container'>
                         <div className="main-pane">

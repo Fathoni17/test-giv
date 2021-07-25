@@ -1,5 +1,31 @@
 .app {
-    background: #E5E5E5;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container,
+.page-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    background: #E5E5E5;
+}
+.page-container {
+    flex: 1;
+    flex-direction: column;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+.main-container .main-pane {
+    display: flex;
+    flex: 1;
+}
+.main-container .side-pane {
+    display: flex;
 }
