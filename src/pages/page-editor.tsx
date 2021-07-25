@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, MenuBar, TitleBar, FormInformation } from '../components'
+import { HeaderContainer, MenuBar, TitleBar, FormInformation, ComponentsContainer } from '../components'
 
 export const PageEditor = () => {
     return (
@@ -15,6 +15,7 @@ export const PageEditor = () => {
                             <div className='workspace'></div>
                         </div>
                         <div className='side-pane'>
+                            <ComponentsContainer />
                             <FormInformation />
                         </div>
                     </div>

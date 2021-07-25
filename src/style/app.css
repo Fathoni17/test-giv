@@ -54,6 +54,7 @@ body {
 
 .main-container .side-pane {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 273px;
     margin: 0 78px 0 35px;

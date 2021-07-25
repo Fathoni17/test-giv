@@ -16,7 +16,7 @@ export const FormInformation = () => {
         { label: 'Last Modified', value: 'March 18, 2021'},
     ];
     return (
-        <SidePaneCard className='form-info-container'>
+        <SidePaneCard title='Form Assignee' className='form-info-container'>
             <div className='users'>
                 <UserProfilePic image={user1} size={32} highlight={true} />
                 <UserProfilePic image={user2} size={32} highlight={false} />

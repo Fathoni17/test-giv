@@ -1,0 +1,28 @@
+.search-field {
+    display: flex;
+    flex-direction: row;
+
+    width: 233px;
+    height: 32px;
+
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.search-field img {
+    margin: 8px 12px;
+    height: 16px;
+    width: 16px;
+}
+.search-field input {
+    outline: none;
+    border: none;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #383838;
+}
