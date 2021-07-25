@@ -7,8 +7,11 @@
     align-items: center;
 }
 
-.menu-item-bg {
+.menu-item-bg.selected {
     background: #F6DA2B;
+}
+.menu-item-bg {
+    background: white;
     height: 60px;
     width: 80px;
     overflow: hidden;

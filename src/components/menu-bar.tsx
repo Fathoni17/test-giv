@@ -22,12 +22,15 @@ import paper_plane_ic from '../assets/svg/icons/paper-plane.svg';
 interface MenuItemParams {
     image: any,
     selected?: boolean,
+    onClick?: Function,
 }
-export const MenuItem = ({image, selected}: MenuItemParams) => {
-    const [ isSelected, setSelected] = useState(selected ?? false);
-
+export const MenuItem = ({image, selected, onClick}: MenuItemParams) => {
     return (
-        <div className={'menu-item-bg'.concat(isSelected ? ' selected': '')} onClick={() => setSelected(!isSelected)}>
+        <div className={'menu-item-bg'.concat(selected ? ' selected': '')}
+            onClick={() => {
+                if (onClick) onClick();
+            }}
+        >
             <div className='menu-item-shade-bg'>
                 <div className='menu-item-shade' />
             </div>
@@ -37,26 +40,14 @@ export const MenuItem = ({image, selected}: MenuItemParams) => {
 }
 
 export const MenuBar = () => {
+    const [selectedId, setSelected] = useState(1);
+    const menuList = [home_ic, papers_ic, folder_ic, option_ic, file_ic, report_data_ic, pie_chart_ic, calendar_ic, document_view_ic, book_ic, archive_box_ic, round_sensor_ic, book_information_ic, people_outline_ic, paper_plane_ic];
     return (
         <div className='menu-container'>
             <div className='menu-user-pic-wrapper'>
                 <UserProfilePic image={user1pic} size={42} highlight={false} />
             </div>
-            <MenuItem image={home_ic} />
-            <MenuItem image={papers_ic} selected={true} />
-            <MenuItem image={folder_ic} />
-            <MenuItem image={option_ic} />
-            <MenuItem image={file_ic} />
-            <MenuItem image={report_data_ic} />
-            <MenuItem image={pie_chart_ic} />
-            <MenuItem image={calendar_ic} />
-            <MenuItem image={document_view_ic} />
-            <MenuItem image={book_ic} />
-            <MenuItem image={archive_box_ic} />
-            <MenuItem image={round_sensor_ic} />
-            <MenuItem image={book_information_ic} />
-            <MenuItem image={people_outline_ic} />
-            <MenuItem image={paper_plane_ic} />
+            {menuList.map((menu, id) => <MenuItem image={menu} selected={id === selectedId} onClick={() => setSelected(id)} />)}
         </div>
     );
 }
