@@ -56,14 +56,14 @@ body {
     display: flex;
     height: 100%;
     width: 273px;
-    padding: 0 78px 0 35px;
+    margin: 0 78px 0 35px;
 }
 
 .main-container .main-pane .thumbnail {
     display: flex;
     height: 100%;
     width: 235px;
-    padding: 0 35px 0 45px;
+    margin: 0 35px 0 45px;
 }
 
 .main-container .main-pane .workspace {
