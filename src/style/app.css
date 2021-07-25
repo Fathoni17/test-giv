@@ -19,7 +19,7 @@
 }
   
 body {
-    font-family: 'Nunito';
+    font-family: 'Nunito' !important;
 }
 .app {
     height: 100%;
@@ -32,7 +32,6 @@ body {
 .page-wrapper {
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 100%;
     background: #FAFBFD;
 }
@@ -44,11 +43,32 @@ body {
 .main-container {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 .main-container .main-pane {
     display: flex;
+    height: 100%;
+    flex-direction: row;
     flex: 1;
 }
+
 .main-container .side-pane {
     display: flex;
+    height: 100%;
+    width: 273px;
+    padding: 0 78px 0 35px;
+}
+
+.main-container .main-pane .thumbnail {
+    display: flex;
+    height: 100%;
+    width: 235px;
+    padding: 0 35px 0 45px;
+}
+
+.main-container .main-pane .workspace {
+    display: flex;
+    height: 100%;
+    padding: 0 25px;
+    flex: 1;
 }

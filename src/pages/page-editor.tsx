@@ -11,7 +11,8 @@ export const PageEditor = () => {
                     <TitleBar />
                     <div className='main-container'>
                         <div className="main-pane">
-
+                            <div className='thumbnail'></div>
+                            <div className='workspace'></div>
                         </div>
                         <div className='side-pane'></div>
                     </div>
