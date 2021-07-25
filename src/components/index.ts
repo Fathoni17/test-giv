@@ -3,3 +3,8 @@ export * from './user-profile-pic';
 export * from './header';
 export * from './menu-bar';
 export * from './title-bar';
+export * from './form-info';
+export * from './side-pane-card';
+export * from './search-bar';
+export * from './component-card';
+export * from './component-category';

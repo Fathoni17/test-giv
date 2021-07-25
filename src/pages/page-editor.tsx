@@ -1,9 +1,12 @@
 import React from 'react';
-import { HeaderContainer, MenuBar, TitleBar } from '../components'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { HeaderContainer, MenuBar, TitleBar, FormInformation, ComponentsContainer } from '../components'
 
 export const PageEditor = () => {
     return (
         <>
+        <DndProvider backend={HTML5Backend}>
             <HeaderContainer />
             <div className='page-wrapper'>
                 <MenuBar />
@@ -14,10 +17,14 @@ export const PageEditor = () => {
                             <div className='thumbnail'></div>
                             <div className='workspace'></div>
                         </div>
-                        <div className='side-pane'></div>
+                        <div className='side-pane'>
+                            <ComponentsContainer />
+                            <FormInformation />
+                        </div>
                     </div>
                 </div>
             </div>
+        </DndProvider>
         </>
     );
 }
