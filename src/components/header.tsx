@@ -9,6 +9,7 @@ import issue from '../assets/svg/icons/ticket.svg';
 import message from '../assets/svg/icons/chatbubbles.svg';
 import balance from '../assets/svg/icons/coins.svg';
 import profile from '../assets/svg/icons/user.svg';
+import { width } from "@material-ui/system";
 
 interface HeaderMenuItemParams {
     id: String,
@@ -31,6 +32,7 @@ export const HeaderContainer = () => {
             <Logo />
             <div className='header-icons-list'>
                 <IconDetail />
+                <div style={{width: '10px'}}></div>
                 <RefreshInd />
             </div>
             <div className='header-spacer' />

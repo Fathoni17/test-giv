@@ -16,7 +16,6 @@
 }
 .header-container .header-spacer {
     flex-grow: 1;
-    background: coral;
 }
 
 .header-container .header-menu-list {
@@ -29,6 +28,7 @@
     color: black;
     font-size: 15;
     display: flex;
+    align-items: center;
 }
 
 .header-container .header-menu-list .menu-items p {
