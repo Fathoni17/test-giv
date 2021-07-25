@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useDrag, DragSourceMonitor } from 'react-dnd'
 import { ComponentRepository } from "../repository/component-repo";
 import { SidePaneCard, SearchBar, ComponentCategory } from ".";
-import drag_ic from '../assets/svg/icons/drag-outlined.svg';
+import drg_ic from '../assets/svg/icons/drag-outlined.svg';
 
 export interface ComponentItemParams {
     id: number,
@@ -10,11 +11,21 @@ export interface ComponentItemParams {
     label: string,
 }
 export const ComponentItem = ({id, icon, label}: ComponentItemParams) => {
-    return <div id={id.toString()} className='component-item'>
-        <img className='component-icon' src={icon} alt="" />
-        <p className='component-label'>{label}</p>
-        <img className='drag-icon' src={drag_ic} alt="drag-ic" />
-    </div>
+    const [{ opacity }, drag] = useDrag(() => ({
+        type: '',
+        // item: {  id, icon, label},
+        collect: (monitor: DragSourceMonitor) => ({
+            opacity: monitor.isDragging() ? 0.4 : 1,
+        }),
+    }))
+
+    return (
+        <div ref={drag} role='ComponentItem' style={{ opacity }} id={id.toString()} className='component-item'>
+            <img className='component-icon' src={icon} alt="" />
+            <p className='component-label'>{label}</p>
+            <img className='drg-icon' src={drg_ic} alt="drg-ic" />
+        </div>
+    );
 }
 
 export const ComponentsContainer = () => {
