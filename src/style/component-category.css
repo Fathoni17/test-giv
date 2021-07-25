@@ -37,7 +37,44 @@
 
 .component-category-wrapper.selected .component-list {
     height: 100%;
+    padding: 10px 0 0;
 }
 .component-category-wrapper.selected .header img {
     transform: rotateZ(180deg);
+}
+
+.component-item {
+    height: 32px;    
+    padding: 6px 11px 6px 14px;
+    margin: 5px 0 0;
+
+    background: #FAFBFD;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.component-item .component-icon {
+    width: 20px;
+    height: 20px;
+    background: cornsilk;
+}
+.component-item .component-label {
+    margin: 0 10px 0;
+    flex: 1;
+
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    
+    color: #383838;
+}
+.component-item .drag-icon {
+    width: 20px;
+    height: 20px;
 }
