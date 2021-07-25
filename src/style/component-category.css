@@ -1,0 +1,43 @@
+.component-category-wrapper {
+    display: flex;
+    flex-direction: column;
+    
+    overflow: hidden;
+    width: 100%;
+
+    transition: all 250ms ease-in-out;
+}
+.component-category-wrapper .header {
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E5E5E5;
+}
+.component-category-wrapper .header .title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #383838;
+
+    margin-inline-start: 14px;
+}
+.component-category-wrapper .header img {
+    width: 10px;
+    transition: all 250ms ease-in-out;
+    transform: rotateZ(0deg);
+}
+.component-category-wrapper .component-list {
+    height: 0;
+}
+
+.component-category-wrapper.selected .component-list {
+    height: 100%;
+}
+.component-category-wrapper.selected .header img {
+    transform: rotateZ(180deg);
+}

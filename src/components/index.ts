@@ -7,3 +7,4 @@ export * from './form-info';
 export * from './side-pane-card';
 export * from './search-bar';
 export * from './component-card';
+export * from './component-category';
