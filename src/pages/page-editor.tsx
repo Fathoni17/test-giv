@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, MenuBar } from '../components'
+import { HeaderContainer, MenuBar, TitleBar } from '../components'
 
 export const PageEditor = () => {
     return (
@@ -8,7 +8,7 @@ export const PageEditor = () => {
             <div className='page-wrapper'>
                 <MenuBar />
                 <div className='page-container'>
-                    {/* <NavIndicator /> */}
+                    <TitleBar />
                     <div className='main-container'>
                         <div className="main-pane">
 
