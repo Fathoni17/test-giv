@@ -1,6 +1,7 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import plus from '../assets/svg/icons/plus-ic.svg';
 import {
     HeaderContainer,
     MenuBar,
@@ -8,9 +9,12 @@ import {
     FormInformation,
     ComponentsContainer,
     Workspace,
+    ThumbnailPage,
 } from '../components'
 
 export const PageEditor = () => {
+    const workSpace = <Workspace />
+
     return (
         <>
         <DndProvider backend={HTML5Backend}>
@@ -21,9 +25,15 @@ export const PageEditor = () => {
                     <TitleBar />
                     <div className='main-container'>
                         <div className="main-pane">
-                            <div className='thumbnail'></div>
+                            <div className='thumbnail'>
+                                <ThumbnailPage>{workSpace}</ThumbnailPage>
+                                <div className="button-add-page">
+                                    <img src={plus} alt="" />
+                                    <p>Add More Pages</p>
+                                </div>
+                            </div>
                             <div className='workspace'>
-                                <Workspace />
+                                {workSpace}
                             </div>
                         </div>
                         <div className='side-pane'>

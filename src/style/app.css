@@ -62,6 +62,7 @@ body {
 
 .main-container .main-pane .thumbnail {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 235px;
     margin: 0 35px 0 45px;

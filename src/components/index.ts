@@ -9,3 +9,4 @@ export * from './search-bar';
 export * from './component-card';
 export * from './component-category';
 export * from './work-space';
+export * from './thumbnail-page';
