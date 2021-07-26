@@ -1,0 +1,214 @@
+.workspace-wrapper {
+    background: #FFFFFF;
+    border-radius: 10px;
+
+    width: 603px;
+    height: 840px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.workspace-wrapper .workspace-header-bg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.workspace-wrapper .workspace-container {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.workspace-wrapper .workspace-container .toolbar {
+    padding: 9px 16px 4px;
+    background: rgba(229, 229, 229, 0.33);
+    border: 0.5px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.workspace-wrapper .workspace-container .drop-target {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.drop-target .placeholder {
+    width: 530px;
+    height: 81px;
+    margin: 18px 35px 0;
+    display: flex;
+    align-items: flex-end;
+    
+    background: rgba(251, 239, 164, 0.3);
+    border: 1px dashed #F6DA2B;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.drop-target .placeholder .hint {
+    font-family: Nunito;
+    font-size: 12px;
+    line-height: 16px;
+    color: #898B96;
+    margin: 0 auto 7px 22px;
+}
+.workspace-wrapper .workspace-container .drop-target .header-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 18px 35px 0;
+}
+.workspace-wrapper .workspace-container .drop-target .s-component {
+    width: 250px;
+    height: 32px;
+    padding: 6px 5px 6px 12px;
+
+    background: #FAFAFA;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.workspace-wrapper .workspace-container .drop-target .m-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    
+    width: 165px;
+    height: 65px;
+
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.workspace-wrapper .workspace-container .drop-target .lg-component {}
+.workspace-wrapper .workspace-container .drop-target .ln-component {}
+
+.drop-target .m-component p, .drop-target .m-component b {
+    margin: 0;
+}
+.workspace-wrapper .workspace-container .drop-target .m-component.title-item,
+.workspace-wrapper .workspace-container .drop-target .m-component.empty-item {
+    border: 1px dashed #E5E5E5;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    
+    color: #383838;
+}
+.drop-target .component-field,
+.workspace-wrapper .workspace-container .drop-target .m-component.image-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: #FAFBFD;
+    border: 1px solid #E5E5E5;
+    font-size: 12px;
+    line-height: 16px;
+    
+    color: #383838;
+    padding: 0 7px 0 12px;
+}
+.drop-target .component-field .label,
+.drop-target .m-component.image-item .label {
+    margin: 0 10px;
+    flex: 1;
+}
+.drop-target .component-field.s-component .label {
+    font-style: italic;
+    font-size: 10px;
+    line-height: 14px;
+    color: #F6DA2B;
+}
+
+.drop-target .component-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    margin: 18px 35px 0;
+}
+.drop-target .component-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.drop-target .component-wrapper .title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #383838;
+    margin: 0 0 5px;
+}
+.workspace-wrapper .workspace-container .drop-target .spacer {
+    position: relative;
+    margin: 22px 35px 0;
+    width: calc(100% - 70px);
+    display: flex;
+    justify-content: center;
+}
+.workspace-wrapper .workspace-container .drop-target .spacer .line {
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    top: 50%;
+
+    border: 1px solid #E5E5E5;
+}
+.workspace-wrapper .workspace-container .drop-target .spacer .plus-btn {
+    width: 32px;
+    height: 32px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(229, 229, 229, 0.4);
+    border-radius: 20px;
+}
+
+.drop-target .component-table {
+    display: flex;
+    margin: 18px 35px 0;
+    width: 530px;
+    height: 84px;
+}
+.drop-target .component-table table {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.drop-target .component-table tr,
+.drop-target .component-table th,
+.drop-target .component-table td {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    color: #898B96;
+
+    font-weight: bold;
+}
+.drop-target .component-table td {
+    font-weight: normal;
+}

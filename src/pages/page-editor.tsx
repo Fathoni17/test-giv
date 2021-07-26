@@ -1,7 +1,14 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { HeaderContainer, MenuBar, TitleBar, FormInformation, ComponentsContainer } from '../components'
+import {
+    HeaderContainer,
+    MenuBar,
+    TitleBar,
+    FormInformation,
+    ComponentsContainer,
+    Workspace,
+} from '../components'
 
 export const PageEditor = () => {
     return (
@@ -15,7 +22,9 @@ export const PageEditor = () => {
                     <div className='main-container'>
                         <div className="main-pane">
                             <div className='thumbnail'></div>
-                            <div className='workspace'></div>
+                            <div className='workspace'>
+                                <Workspace />
+                            </div>
                         </div>
                         <div className='side-pane'>
                             <ComponentsContainer />
