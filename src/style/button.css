@@ -1,0 +1,51 @@
+.button {
+    height: 40px;
+    width: 111px;
+    border-radius: 5px;
+
+    box-shadow: 0px 4px 4px rgba(229, 229, 229, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #383838;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+
+    background: radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);
+    border: none;
+}
+
+.button.outline {
+    background: transparent;
+    border: 1px solid #F6DA2B;
+    box-sizing: border-box;
+}
+
+.button-add-page {
+    display: flex;
+    flex-direction: row;
+    padding: 14px 21px;
+    width: 233px;
+    height: 46px;
+
+    background: #FFFFFF;
+    border: 1px dashed #F6DA2B;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.button-add-page img {
+    height: 16px;
+    width: 16px;
+    margin-inline-end: 21px;
+}
+.button-add-page p{
+    margin: 0;
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #383838;
+}

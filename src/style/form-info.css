@@ -1,0 +1,47 @@
+.form-info-container .users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto 14px auto;
+}
+.form-info-container .users .user-pic,
+.form-info-container .users .add-user-assignee {
+    margin: 0 5px;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+    border: 1px dashed #F6DA2B;
+    box-sizing: border-box;
+}
+.form-info-container .users .add-user-assignee img {
+    height: 18px;
+    width: 18px;
+}
+
+.form-info-container .detail-item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 8px;
+}
+.form-info-container .detail-item:last-child,
+.form-info-container .detail-item:first-child {
+    margin: 0 8px;
+}
+.form-info-container .detail-item .label,
+.form-info-container .detail-item .value {
+    margin: 0;
+    flex: 1;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #383838;
+}
+.form-info-container .detail-item .label {
+    color: #898B96;
+}

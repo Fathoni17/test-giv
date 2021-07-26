@@ -1,0 +1,26 @@
+.thumb-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.thumb-wrapper .page-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-inline-end: 19px;
+
+    background: #F6DA2B;
+    border: 1px solid #F6DA2B;
+    border-radius: 32px;
+    box-sizing: border-box;
+}
+.thumb-wrapper .thumb-container {
+    flex: 1;
+    border: none;
+    width: 100%;
+    height: 255px;
+    outline: none;
+    margin-bottom: 15px;
+}
