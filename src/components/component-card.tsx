@@ -8,22 +8,25 @@ import { ItemType } from "../variables";
 
 export interface ComponentItemParams {
     id: string,
-    icon: any,
+    Icon: any,
     label: string,
 }
-export const ComponentItem = ({id, icon, label}: ComponentItemParams) => {
+export const ComponentItem = ({id, Icon, label}: ComponentItemParams) => {
     const [{ opacity }, drag] = useDrag(() => ({
         type: ItemType.COMPONENT_CARD,
-        item: {  id, icon, label },
+        item: { id, Icon, label },
         collect: (monitor: DragSourceMonitor) => ({
             opacity: monitor.isDragging() ? 0.4 : 1,
         }),
     }))
 
+    const key =Object.keys(Icon)[0];
+    console.log(1349, Icon[key]);
+
     return (
         // eslint-disable-next-line jsx-a11y/aria-role
         <div ref={drag} role='ComponentItem' style={{ opacity, cursor: 'move', }} id={id.toString()} className='component-item'>
-            <img className='component-icon' src={icon} alt="" />
+            <img className='component-icon' src={Icon[key]} alt="" />
             <p className='component-label'>{label}</p>
             <img className='drg-icon' src={drg_ic} alt="drg-ic" />
         </div>
@@ -31,7 +34,7 @@ export const ComponentItem = ({id, icon, label}: ComponentItemParams) => {
 }
 
 export const ComponentsContainer = () => {
-    const [selectedId, setSelectedId] = useState(0);
+    const [selectedId, setSelectedId] = useState(2);
 
     const componentRepo = new ComponentRepository();
     const componentData = componentRepo.allcomponents;
@@ -42,8 +45,8 @@ export const ComponentsContainer = () => {
             <SearchBar />
             {componentData.map( (category, idx) => {
                 return <ComponentCategory title={category.title} expanded={selectedId === idx} onClickExpand={() => setSelectedId(selectedId === idx? -1: idx)}>
-                    {category.components.map((cmp, id) => {
-                        return <ComponentItem id={cmp.id} icon={cmp.icon} label={cmp.label} />
+                    {category.components.map(cmp => {
+                        return <ComponentItem id={cmp.id} Icon={cmp.Icon} label={cmp.label} />
                     })}
                 </ComponentCategory>
             })}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import header_bg from '../assets/svg/paper-header.svg';
 import toolbar from '../assets/svg/toolbar/tool-bar.svg';
 import image_ic from '../assets/svg/components/image.svg';
@@ -32,7 +32,7 @@ export const ComponentField = ({icon, text, className, onClick}: ComponentFieldP
 }
 
 export const ComponentFieldView = ({ id, order }: {id: string, order: number}) => {
-    const [{ isDragging }, drag, preview] = useDrag(() => ({
+    const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemType.COMPONENT_VIEW,
         item: {  id, order },
         collect: (monitor: DragSourceMonitor) => ({
