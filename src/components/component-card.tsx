@@ -6,21 +6,22 @@ import { SidePaneCard, SearchBar, ComponentCategory } from ".";
 import drg_ic from '../assets/svg/icons/drag-outlined.svg';
 
 export interface ComponentItemParams {
-    id: number,
+    id: string,
     icon: any,
     label: string,
 }
 export const ComponentItem = ({id, icon, label}: ComponentItemParams) => {
     const [{ opacity }, drag] = useDrag(() => ({
-        type: '',
-        // item: {  id, icon, label},
+        type: 'componentitem',
+        item: {  id, icon, label },
         collect: (monitor: DragSourceMonitor) => ({
             opacity: monitor.isDragging() ? 0.4 : 1,
         }),
     }))
 
     return (
-        <div ref={drag} role='ComponentItem' style={{ opacity }} id={id.toString()} className='component-item'>
+        // eslint-disable-next-line jsx-a11y/aria-role
+        <div ref={drag} role='ComponentItem' style={{ opacity, cursor: 'move', }} id={id.toString()} className='component-item'>
             <img className='component-icon' src={icon} alt="" />
             <p className='component-label'>{label}</p>
             <img className='drg-icon' src={drg_ic} alt="drg-ic" />
@@ -41,7 +42,7 @@ export const ComponentsContainer = () => {
             {componentData.map( (category, idx) => {
                 return <ComponentCategory title={category.title} expanded={selectedId === idx} onClickExpand={() => setSelectedId(selectedId === idx? -1: idx)}>
                     {category.components.map((cmp, id) => {
-                        return <ComponentItem id={id} icon={cmp.icon} label={cmp.label} />
+                        return <ComponentItem id={cmp.id} icon={cmp.icon} label={cmp.label} />
                     })}
                 </ComponentCategory>
             })}
