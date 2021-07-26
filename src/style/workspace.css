@@ -180,3 +180,35 @@
     box-shadow: 0px 4px 4px rgba(229, 229, 229, 0.4);
     border-radius: 20px;
 }
+
+.drop-target .component-table {
+    display: flex;
+    margin: 18px 35px 0;
+    width: 530px;
+    height: 84px;
+}
+.drop-target .component-table table {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.drop-target .component-table tr,
+.drop-target .component-table th,
+.drop-target .component-table td {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    color: #898B96;
+
+    font-weight: bold;
+}
+.drop-target .component-table td {
+    font-weight: normal;
+}

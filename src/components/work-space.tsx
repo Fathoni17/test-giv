@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import header_bg from '../assets/svg/paper-header.svg';
 import toolbar from '../assets/svg/toolbar/tool-bar.svg';
 import image_ic from '../assets/svg/components/image.svg';
@@ -11,7 +11,9 @@ import input_field_ic from '../assets/svg/components/input-field.svg';
 import dropdown_ic from '../assets/svg/components/dropdown-menu.svg';
 import { ItemType, DragItem } from '../variables';
 import '../style/workspace.css';
-import { useDrop, DropTargetMonitor } from "react-dnd";
+import { useDrop, DropTargetMonitor, useDrag, DragSourceMonitor } from "react-dnd";
+import { useState } from "react";
+import { ComponentDetail } from "../repository/component-repo";
 
 interface ComponentFieldParams {
     icon: any,
@@ -29,19 +31,59 @@ export const ComponentField = ({icon, text, className, onClick}: ComponentFieldP
     )
 }
 
+export const ComponentFieldView = ({ id, order }: {id: string, order: number}) => {
+    const [{ isDragging }, drag, preview] = useDrag(() => ({
+        type: ItemType.COMPONENT_VIEW,
+        item: {  id, order },
+        collect: (monitor: DragSourceMonitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    }))
+
+    if (id === 'table') {
+        const transform = `rotate(${isDragging ? '-2.16deg' : '0deg'});`; 
+        const cursor = isDragging ? 'grabbing' : 'grab';
+        return (
+            // eslint-disable-next-line jsx-a11y/aria-role
+            <div ref={drag} style={{ transform, cursor }} role='ComponentFieldView' className="component-table">
+                <table>
+                    <tr>
+                        <th>Table Title</th>
+                        <th>Table Title</th> 
+                    </tr>
+                    <tr>
+                        <td>Table Content</td>
+                        <td>Table Content</td>
+                    </tr>
+                </table>
+            </div>
+        ) 
+    } else return <></>
+}
+
 interface DropTragerProps {
     children: any,
 }
 export const DropComponentTarget = ({children}: DropTragerProps) => {
-    const [{ isOver }, drop] = useDrop(
+    const [component, addComponent] = useState<ComponentDetail[]>([]);
+
+    const [{ isOver, moveOnly }, drop] = useDrop(
         () => ({
-            accept: ItemType.COMPONENT_CARD,
+            accept: [ItemType.COMPONENT_CARD, ItemType.COMPONENT_VIEW],
             drop(_item: DragItem, monitor) {
-                console.log(1349, monitor.getItem())
+                const item: ComponentDetail = monitor.getItem();
+                console.log(1349, item)
+                if (monitor.getItemType() === ItemType.COMPONENT_CARD) {
+                    const temp = component;
+                    if (item.id === 'table' && temp.length < 4)
+                        temp.push(monitor.getItem());
+                    addComponent(temp);
+                }
                 return undefined
             },
             collect: (monitor: DropTargetMonitor) => ({
                 isOver: monitor.isOver(),
+                moveOnly: monitor.getItemType() === ItemType.COMPONENT_VIEW,
                 canDrop: monitor.canDrop(),
             }),
         })
@@ -51,7 +93,9 @@ export const DropComponentTarget = ({children}: DropTragerProps) => {
     return (
         <div ref={drop} className="drop-target">
             {children}
-            {isOver ?
+            {component.map((item, idx) => <ComponentFieldView order={idx} id={item.id} /> )
+            }
+            {isOver && !moveOnly ?
                 <div className="placeholder" style={{ opacity }}>
                     <p className="hint">Drop here to add section</p>
                 </div> : <></>

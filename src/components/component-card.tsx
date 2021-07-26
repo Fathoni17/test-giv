@@ -4,6 +4,7 @@ import { useDrag, DragSourceMonitor } from 'react-dnd'
 import { ComponentRepository } from "../repository/component-repo";
 import { SidePaneCard, SearchBar, ComponentCategory } from ".";
 import drg_ic from '../assets/svg/icons/drag-outlined.svg';
+import { ItemType } from "../variables";
 
 export interface ComponentItemParams {
     id: string,
@@ -12,7 +13,7 @@ export interface ComponentItemParams {
 }
 export const ComponentItem = ({id, icon, label}: ComponentItemParams) => {
     const [{ opacity }, drag] = useDrag(() => ({
-        type: 'componentitem',
+        type: ItemType.COMPONENT_CARD,
         item: {  id, icon, label },
         collect: (monitor: DragSourceMonitor) => ({
             opacity: monitor.isDragging() ? 0.4 : 1,
