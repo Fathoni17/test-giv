@@ -173,7 +173,7 @@ export const Workspace = () => {
                     if ((item.id === 'table' || 
                          item.id === 'short-text' ||
                          item.id === 'drop-down') 
-                        && pagesComponent.length < 5) {
+                        && pagesComponent.length < 6) {
                         newComponent(monitor.getItem());
                     }
                 }
