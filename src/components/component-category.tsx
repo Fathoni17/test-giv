@@ -11,9 +11,9 @@ interface ComponentCategoryParams {
 export const ComponentCategory = ({title, expanded, onClickExpand, children}: ComponentCategoryParams) => {
     return (
         <div className={'component-category-wrapper'.concat(expanded ? ' selected': '')} >
-            <div className='header'>
+            <div className='header' onClick={() => {if (onClickExpand) onClickExpand()}} >
                 <p className='title'>{title}</p>
-                <img src={expand_ic} alt="expand-ic" onClick={() => {if (onClickExpand) onClickExpand()}} />
+                <img src={expand_ic} alt="expand-ic" />
             </div>
             <div className='component-list'>{children}</div>
         </div>

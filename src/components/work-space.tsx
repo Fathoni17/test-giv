@@ -4,9 +4,6 @@ import toolbar from '../assets/svg/toolbar/tool-bar.svg';
 import image_ic from '../assets/svg/components/image.svg';
 import more_ic from '../assets/svg/icons/more-opt.svg';
 import plus_ic from '../assets/svg/icons/plus-grey.svg';
-import component1 from '../assets/svg/components/1.svg';
-import component2 from '../assets/svg/components/2.svg';
-import component3 from '../assets/svg/components/3.svg';
 import input_field_ic from '../assets/svg/components/input-field.svg';
 import dropdown_ic from '../assets/svg/components/dropdown-menu.svg';
 import { ItemType, DragItem } from '../variables';
@@ -40,44 +37,145 @@ export const ComponentFieldView = ({ id, order }: {id: string, order: number}) =
         }),
     }))
 
-    if (id === 'table') {
-        const transform = `rotate(${isDragging ? '-2.16deg' : '0deg'});`; 
-        const cursor = isDragging ? 'grabbing' : 'grab';
+    const cursor = isDragging ? 'grabbing' : 'grab';
+    switch (id) {
+        case 'table':            
         return (
-            // eslint-disable-next-line jsx-a11y/aria-role
-            <div ref={drag} style={{ transform, cursor }} role='ComponentFieldView' className="component-table">
-                <table>
-                    <tr>
-                        <th>Table Title</th>
-                        <th>Table Title</th> 
-                    </tr>
-                    <tr>
-                        <td>Table Content</td>
-                        <td>Table Content</td>
-                    </tr>
-                </table>
-            </div>
-        ) 
-    } else return <></>
+                <div ref={drag} style={{ cursor }} className="component-wrapper">
+                    <div className="component-table">
+                        <table>
+                            <tr>
+                                <th>Table Title</th>
+                                <th>Table Title</th> 
+                            </tr>
+                            <tr>
+                                <td>Table Content</td>
+                                <td>Table Content</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            )
+        case 'short-text':
+            return (
+                <div ref={drag} style={{ cursor }} className="component-wrapper">
+                    <div className="title">Title :</div>
+                    <ComponentField className='s-component' icon={input_field_ic} text='Short Text' />
+                </div>
+            );
+        case 'drop-down':
+            return (
+                <div ref={drag} style={{ cursor }} className="component-wrapper">
+                    <div className="title">Title :</div>
+                    <ComponentField className='s-component' icon={dropdown_ic} text='Drop-down Menus' />
+                </div>
+            );
+        default:
+            break;
+        }
+        return <></>
+    }
+
+export const PlaceHolder = ({ display, gridColumn }: { display: string, gridColumn?: string }) => {
+    return (
+        <div className="placeholder" style={{ display, gridColumn }}>
+            <p className="hint">Drop here to add section</p>
+        </div>
+    );
+}
+interface DropTragerProps {
+    id: string,
+    componentList: ComponentDetail[], 
+    onItemDrop: (id: string, componentDetail: ComponentDetail) => void,
+}
+export const DropComponentTarget = ({id, componentList, onItemDrop}: DropTragerProps) => {
+    const hasTable = componentList.findIndex(item => item.id === 'table') !== -1;
+    const [{ isOver, moveOnly, canDrop }, drop] = useDrop(
+        () => ({
+            accept: [ItemType.COMPONENT_CARD, ItemType.COMPONENT_VIEW],
+            canDrop(_item: DragItem, monitor) {
+                const item: ComponentDetail = monitor.getItem();
+                if (item.id === 'table' && componentList.length > 0)
+                    return false;
+                if (hasTable)
+                    return false;
+
+                return true;
+            },
+            drop(_item: DragItem, monitor) {
+                const item: ComponentDetail = monitor.getItem();
+                console.log(1349, item)
+                if (monitor.getItemType() === ItemType.COMPONENT_CARD) {
+                    if ((item.id === 'short-text' ||
+                         item.id === 'drop-down') 
+                        && componentList.length < 3) {
+                        onItemDrop(id, monitor.getItem());
+                    }
+                }
+                return undefined
+            },
+            collect: (monitor: DropTargetMonitor) => ({
+                isOver: monitor.isOver(),
+                moveOnly: monitor.getItemType() === ItemType.COMPONENT_VIEW,
+                canDrop: monitor.canDrop(),
+                isTable: monitor.getItem<ComponentDetail>()?.id ?? false,
+            }),
+        })
+    )
+    
+    const display = isOver ? 'flex' : 'none';
+    return (
+        <div ref={drop} id={id} className={`component-container column-${(hasTable ? 1 : componentList.length) + (isOver && !moveOnly && componentList.length < 3? 1 : 0)}`} >
+            {componentList.map((item, idx) => {
+                return (
+                    <ComponentFieldView order={idx} id={item.id} />
+                )
+            })}
+            {isOver && !moveOnly && canDrop && componentList.length < 3?
+                <PlaceHolder display={display} />
+                : <></>
+            }
+        </div>
+    );
 }
 
-interface DropTragerProps {
-    children: any,
+interface pagesComponentProps {
+    id: string,
+    components: ComponentDetail[]
 }
-export const DropComponentTarget = ({children}: DropTragerProps) => {
-    const [component, addComponent] = useState<ComponentDetail[]>([]);
+
+export const Workspace = () => {
+    const [pagesComponent, setPageComponent] = useState<pagesComponentProps[]>([]);
+    
+    const newComponent = (component: ComponentDetail) => {
+        const temp: pagesComponentProps = { id: `component-${pagesComponent.length}`, components: [component]}
+        const retList = pagesComponent;
+        retList.push(temp);
+        setPageComponent(retList);
+    }
+
+    const onItemDrop = (id: string, componentDetail: ComponentDetail) => {
+        const idx = pagesComponent.findIndex(item => item.id === id)
+        const tempComponents = pagesComponent[idx];
+        const tempRet = pagesComponent;
+
+        tempComponents.components.push(componentDetail);
+        tempRet[idx] = tempComponents;
+        setPageComponent(tempRet);
+    }
 
     const [{ isOver, moveOnly }, drop] = useDrop(
         () => ({
             accept: [ItemType.COMPONENT_CARD, ItemType.COMPONENT_VIEW],
             drop(_item: DragItem, monitor) {
                 const item: ComponentDetail = monitor.getItem();
-                console.log(1349, item)
                 if (monitor.getItemType() === ItemType.COMPONENT_CARD) {
-                    const temp = component;
-                    if (item.id === 'table' && temp.length < 4)
-                        temp.push(monitor.getItem());
-                    addComponent(temp);
+                    if ((item.id === 'table' || 
+                         item.id === 'short-text' ||
+                         item.id === 'drop-down') 
+                        && pagesComponent.length < 5) {
+                        newComponent(monitor.getItem());
+                    }
                 }
                 return undefined
             },
@@ -88,29 +186,14 @@ export const DropComponentTarget = ({children}: DropTragerProps) => {
             }),
         })
     )
-    
-    const opacity = isOver ? 1 : 0;
-    return (
-        <div ref={drop} className="drop-target">
-            {children}
-            {component.map((item, idx) => <ComponentFieldView order={idx} id={item.id} /> )
-            }
-            {isOver && !moveOnly ?
-                <div className="placeholder" style={{ opacity }}>
-                    <p className="hint">Drop here to add section</p>
-                </div> : <></>
-            }
-        </div>
-    );
-}
 
-export const Workspace = () => {
     return (
         <div className='workspace-wrapper'>
             <img className='workspace-header-bg' src={header_bg} alt="header-bg" />
             <div className='workspace-container'>
                 <img className='toolbar' src={toolbar} alt='toolbar-img' />
-                <DropComponentTarget>
+                <div className="drop-target">
+
                     <div className="header-item">
                         <div className="m-component component-field image-item">
                             <img src={image_ic} alt="imagecmp-ic" />
@@ -129,22 +212,18 @@ export const Workspace = () => {
                             <img src={plus_ic} alt="plus-ic" />
                         </div>
                     </div>
-                    <div className="component-container">
-                        <div className="component-wrapper">
-                            <div className="title">Driver Name :</div>
-                            <ComponentField className='s-component' icon={input_field_ic} text='Employee Name; Employee List' />
-                        </div>
-                        <div className="component-wrapper">
-                            <div className="title">Coach Number :</div>
-                            <ComponentField className='s-component' icon={dropdown_ic} text='Employee ID; Employee List' />
-                        </div>
+                    {pagesComponent.map(item => {
+                        return (
+                            <DropComponentTarget id={item.id} componentList={item.components} onItemDrop={onItemDrop} />
+                            )
+                        })
+                    }
+                    <div ref={drop} className="component-container" style={{height: '100%'}}>
+                        {isOver && !moveOnly ?
+                            <PlaceHolder display={isOver ? 'flex' : 'none'} />:<></>
+                        }
                     </div>
-                    <div className="component-container">
-                        <img src={component1} alt="copy-component component-field" />
-                        <img src={component2} alt="copy-component component-field" />
-                        <img src={component3} alt="copy-component component-field" />
-                    </div>
-                </DropComponentTarget>
+                </div>
             </div>
         </div>
     )

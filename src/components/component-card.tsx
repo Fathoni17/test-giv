@@ -12,11 +12,12 @@ export interface ComponentItemParams {
     label: string,
 }
 export const ComponentItem = ({id, Icon, label}: ComponentItemParams) => {
-    const [{ opacity }, drag] = useDrag(() => ({
+    const [{ opacity, isDragging }, drag] = useDrag(() => ({
         type: ItemType.COMPONENT_CARD,
         item: { id, Icon, label },
         collect: (monitor: DragSourceMonitor) => ({
             opacity: monitor.isDragging() ? 0.4 : 1,
+            isDragging: monitor.isDragging(),
         }),
     }))
 
@@ -25,7 +26,7 @@ export const ComponentItem = ({id, Icon, label}: ComponentItemParams) => {
 
     return (
         // eslint-disable-next-line jsx-a11y/aria-role
-        <div ref={drag} role='ComponentItem' style={{ opacity, cursor: 'move', }} id={id.toString()} className='component-item'>
+        <div ref={drag} role='ComponentItem' style={{ opacity, cursor: isDragging ? 'grabbing' : 'grab', }} id={id.toString()} className='component-item'>
             <img className='component-icon' src={Icon[key]} alt="" />
             <p className='component-label'>{label}</p>
             <img className='drg-icon' src={drg_ic} alt="drg-ic" />

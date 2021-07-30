@@ -37,7 +37,7 @@ body {
     background: #FAFBFD;
 }
 .page-container {
-    width: calc(100vw - 80px);
+    width: calc(100% - 80px);
     flex: 1;
     flex-direction: column;
 }
